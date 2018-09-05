@@ -174,20 +174,21 @@ function personalLeave() {
   var start = new Date(document.getElementById("start").value);
   var finish = new Date(document.getElementById("finish").value);
   var minutes = (finish - start) / 1000 / 60;
+  
   if (start >= finish) {
     document.getElementById("start").value = '';
     document.getElementById("finish").value = '';
     alert('Дата окончания не может быть раньше начала!');
     return
-
   }
+  
   if (minutes > personalLeaveMinutes[user]) {
     alert('У вас не осталось так много времени личного отсутствия. Остаток: ' + Math.floor(personalLeaveMinutes[user] / 60) + ' часов ' + personalLeaveMinutes[user] % 60 + ' минут');
     return
   }
 
   personalLeaveMinutes[user] -= minutes
-  console.log('Сотрудник ' + usersNames[user] + " оформил " + Math.floor(minutes / 60) + ' часов ' + minutes % 60 + ' минут личного отсутствия.')
+  console.log('Сотрудник ' + usersNames[user] + text + Math.floor(minutes / 60) + ' часов ' + minutes % 60 + ' минут личного отсутствия.')
 }
 
 function businessTrip() {
