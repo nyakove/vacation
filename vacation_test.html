@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+<body onload = "setDate()">
+<form name="main">
+<div class="container">
+<div class="row">
+<div class="col-md-12 align-self-center">
+<h1 class="display-4">Отпуск 2.0</h1>
+</div>
+</div>
+<div class="row align-items-center">
+<div class="date col align-self-center"><h6>Введите дату начала</h6>
+<input type="date" id="start" class="form-control mr-sm-2"></input> 
+<!-- <input type="time" id="start1"></input> -->
+</div>
+<div class="date col align-self-center"><h6>Введите дату окончания</h6>
+<input type="date" id="finish" class="form-control mr-sm-2"></input>
+<!-- <input type="time" id="finish1"></input>
+ --></div>
+<div class="select col align-self-center"><h6>Выберите сотрудника</h6>
+<select name = "user" required class="form-control mr-sm-2">
+<option value="1">Иван Семенов</option>
+<option value="2">Ирина Таращук</option>
+<option value="3">Григорий Двинский</option>
+<option value="4">Мария Кольченко</option>
+<option value="5">Геннадий Тарасов</option>
+</select></div>
+<div class="select col align-self-center"><h6>Выберите тип отпуска</h6>
+<select name = "type" required class="form-control mr-sm-2" onchange="selectHours(); setDate();">
+<option value="1">Обычный</option>
+<option value="2">За свой счёт</option>
+<option value="3">Больничный</option>
+<option value="4">Личное</option>
+<option value="5">Командировка</option>
+</select>
+</div>
+</div>
+</form>
+<div class="row align-items-center">
+<div class="col-lg-auto" style="margin-top: 20px">
+  <p style="color: white" class="align-self-center"><a class="btn btn-primary"  role="button" onclick="selectVacationType()" href='#'>Проверить</a></p>
+</div>
+<div class="col-lg-auto" style="margin-top: 20px">
+  <p style="color: white"><a class="btn btn-danger"  role="button" onclick="reset()">Сбросить</a></p>
+</div>
+<div class="col-md-8 alert alert-secondary" style="margin-top: 20px; padding-bottom: 6px; padding-top: 6px" id="result">Результат</div>
+</div>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>

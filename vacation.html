@@ -1,0 +1,43 @@
+<html>
+<head>
+<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+<form name="main">
+<div>
+<div class="date"><p>Введите дату начала</p>
+<input type="date" id="start"></input> 
+<!-- <input type="time" id="start1"></input> -->
+</div>
+<div class="date"><p>Введите дату окончания</p>
+<input type="date" id="finish"></input>
+<!-- <input type="time" id="finish1"></input>
+ --></div>
+<div class="select"><p>Выберите сотрудника</p>
+<select name = 'user' required>
+<option value="1">Иван Семенов</option>
+<option value="2">Ирина Таращук</option>
+<option value="3">Григорий Двинский</option>
+<option value="4">Мария Кольченко</option>
+<option value="5">Геннадий Тарасов</option>
+</select>
+</div>
+<div class="select"><p>Выберите тип отпуска</p>
+<select name = 'type' required onchange="selectHours()">
+<option value="1">Обычный</option>
+<option value="2">За свой счёт</option>
+<option value="3">Больничный</option>
+<option value="4"> Личное</option>
+<option value="5">Командировка</option>
+</select>
+</div>
+</div>
+</form>
+<div class="wrapper">
+<div class="box"><p class="butt"><button onclick="selectVacationType()">Проверить</button>
+</div>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>
