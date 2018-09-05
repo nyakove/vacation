@@ -205,5 +205,5 @@ function businessTrip() {
     return
   }
   businessTripDays[user] += days;
-  console.log('Сотрудник ' + usersNames[user] + text + days + ' дней командировки.')
+  console.log('Сотрудник ' + usersNames[user] + text + days + selDays(days) + 'командировки.')
 }
