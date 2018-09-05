@@ -192,3 +192,20 @@ function personalLeave() {
   personalLeaveMinutes[user] -= minutes
   console.log('Сотрудник ' + usersNames[user] + " оформил " + Math.floor(minutes / 60) + ' часов ' + minutes % 60 + ' минут личного отсутствия.')
 }
+
+function businessTrip() {
+
+  var user = main.user.options.selectedIndex;
+  var start = new Date($('#start').val());
+  var finish = new Date($('#finish').val());
+  var days = (finish - start) / 86400 / 1000 + 1;
+
+  if (start >= finish) {
+    document.getElementById("start").value = '';
+    document.getElementById("finish").value = '';
+    alert('Дата окончания не может быть раньше начала. Если вы хотите взять отпуск меньше целого дня, воспользуйтесь типом \"Личное\"');
+    return
+  }
+  businessTripDays[user + 1] += days;
+  console.log('Сотрудник ' + usersNames[user] + " оформил " + days + ' дней командировки.')
+}
