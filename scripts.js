@@ -72,9 +72,6 @@ function selDays (num) {
 	else if  (a.length >= 2 && parseInt(a.slice(-1)) > 1 && parseInt(a.slice(-1)) < 5) 
 		return day[1]
 	
-//else if (a.length >= 2 && a.slice(-2) == "01")
-//		return day[0]
-	
 	else if (a.length >= 2 && parseInt(a.slice(-1)) == 1 && parseInt(a.slice(-2)) != 11)
 		return day[0]
 	
@@ -207,5 +204,5 @@ function businessTrip() {
     return
   }
   businessTripDays[user + 1] += days;
-  console.log('Сотрудник ' + usersNames[user] + " оформил " + days + ' дней командировки.')
+  console.log('Сотрудник ' + usersNames[user] + text + days + ' дней командировки.')
 }
