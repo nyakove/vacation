@@ -204,6 +204,6 @@ function businessTrip() {
     alert('Дата окончания не может быть раньше начала. Если вы хотите взять отпуск меньше целого дня, воспользуйтесь типом \"Личное\"');
     return
   }
-  businessTripDays[user + 1] += days;
+  businessTripDays[user] += days;
   console.log('Сотрудник ' + usersNames[user] + text + days + ' дней командировки.')
 }
