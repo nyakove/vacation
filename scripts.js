@@ -13,14 +13,23 @@ var lessOneDay = 'Дата окончания не может быть рань�
 var userSex = { 0: 1, 1: 0, 2: 1, 3: 0, 4: 1 };
 var text = '';
 
+function checkForm() {
+  user = main.user.options.selectedIndex;
+  start = new Date($('#start').val());
+  finish = new Date($('#finish').val());
+ // start1 = new Date(document.getElementById("start").value + ' ' + document.getElementById("start1").value);
+ // finish1 = new Date(document.getElementById("finish").value + ' ' + document.getElementById("finish1").value);
+  days = (finish - start) / 86400 / 1000 + 1;
+//  hours = (finish1 - start1) / 1000 / 60 / 60;
+}
 
 function setDate() {
-	var start = new Date();
-	var finish = new Date (start.getTime() + 15638400000);
-	var min = start.toISOString().slice(0, 10);
-	var max = finish.toISOString().slice(0, 10);
+	var today = new Date();
+	var lastDate = new Date (today.getTime() + 15638400000);
+	var min = today.toISOString().slice(0, 10);
+	var max = lastDate.toISOString().slice(0, 10);
 	var minmin = min;
-	var finishmax = new Date (finish.getTime() + 2592000000);
+	var finishmax = new Date (lastDate.getTime() + 2592000000);
 	var maxmax = finishmax.toISOString().slice(0, 10);
 	$('#start')[0].min = min;
 	$('#start')[0].max = max;
@@ -119,10 +128,10 @@ function selectVacationType() {
 }
 
 function simpleVacation() {
-  var user = main.user.options.selectedIndex;
+/*   var user = main.user.options.selectedIndex;
   var start = new Date($('#start').val());
   var finish = new Date($('#finish').val());
-  var days = (finish - start) / 86400 / 1000 + 1;
+  var days = (finish - start) / 86400 / 1000 + 1; */
 
   if (start > finish) {
 $('#start').val('')
@@ -135,6 +144,7 @@ $('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
 	$('#result').html('Больше 15 дней подряд брать запрещено!').removeClass(remClass).addClass("alert-danger");
     return
   }
+  
   if (days > daysLeft[user]) {
 	$('#result').html('У вас не осталось так много дней отпуска. Остаток: ' + daysLeft[user] + ' дней').removeClass(remClass).addClass("alert-warning");
     return
@@ -146,10 +156,10 @@ $('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
 }
 
 function otherVacation() {
-  var user = main.user.options.selectedIndex;
+/*   var user = main.user.options.selectedIndex;
   var start = new Date($('#start').val());
   var finish = new Date($('#finish').val());
-  var days = (finish - start) / 86400 / 1000 + 1;
+  var days = (finish - start) / 86400 / 1000 + 1; */
 
   if (start > finish) {
 	$('#start').val('')
