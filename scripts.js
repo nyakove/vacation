@@ -13,7 +13,7 @@ var lessOneDay = 'Дата окончания не может быть рань�
 var userSex = { 0: 1, 1: 0, 2: 1, 3: 0, 4: 1 };
 var text = '';
 
-function checkForm() {
+function globalVar() {
   user = main.user.options.selectedIndex;
   start = new Date($('#start').val());
   finish = new Date($('#finish').val());
@@ -146,7 +146,7 @@ function personalLeave() {
   var minutes = (finish - start) / 1000 / 60;
   
   if (minutes > personalLeaveMinutes[user]) {
-    alert('У вас не осталось так много времени личного отсутствия. Остаток: ' + Math.floor(personalLeaveMinutes[user] / 60) + ' часов ' + personalLeaveMinutes[user] % 60 + ' минут');
+    $('#result').html('У вас не осталось так много времени личного отсутствия. Остаток: ' + Math.floor(personalLeaveMinutes[user] / 60) + ' часов ' + personalLeaveMinutes[user] % 60 + ' минут').removeClass(remClass).addClass("alert-danger");
     return
   }
 
