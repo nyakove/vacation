@@ -49,12 +49,12 @@ function _selectDays_ (num) {
 }
 
 var t1 = performance.now();
-for (i=0; i<10000000; i++) {
+for (i=0; i<1000000; i++) {
 	selectDays(i);
 }
 var t2 = performance.now();
 
-console.log('first func: ' + (t2-t1) + ' ms');
+console.log('selectDays(): ' + (t2-t1) + ' ms');
 
 var t3 = performance.now();
 for (j=0; j<10000000; j++) {
@@ -62,12 +62,14 @@ for (j=0; j<10000000; j++) {
 }
 var t4 = performance.now();
 
-console.log('second func: ' + (t4-t3) + ' ms')
+console.log('_selectDays_(): ' + (t4-t3) + ' ms')
 
 var t5 = performance.now();
-for (k=0; k<10000000; k++) {
+for (k=0; k<1000000; k++) {
 	selDays(k);
 }
 var t6 = performance.now();
 
-console.log('third func: ' + (t6-t5) + ' ms');
+console.log('selDays(): ' + (t6-t5) + ' ms');
+
+
