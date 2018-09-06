@@ -219,5 +219,5 @@ function businessTrip() {
     return
   }
   businessTripDays[user] += days;
-  console.log('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'командировки.')
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'командировки.').removeClass(remClass).addClass("alert-success");
 }
