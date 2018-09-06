@@ -57,7 +57,7 @@ var t2 = performance.now();
 console.log('selectDays(): ' + (t2-t1) + ' ms');
 
 var t3 = performance.now();
-for (j=0; j<10000000; j++) {
+for (j=0; j<1000000; j++) {
 	_selectDays_(j);
 }
 var t4 = performance.now();
