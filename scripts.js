@@ -56,7 +56,7 @@ function reset() {
 	$('#result').html('Результат').removeClass(remClass).addClass("alert-secondary");
 }
 
-function selDays (num) {
+/* function selDays (num) {
 	var day = [' день ',' дня ',' дней '];
 	if (num >= 5 && num <= 20)
 		return day[2];
@@ -76,6 +76,20 @@ function selDays (num) {
 		return day[0]
 	
 	else return day[2]
+} */
+
+function _selectDays_ (num) {
+	var day = [' день ',' дня ',' дней '];
+	var a = num.toString().slice(-2);
+	var b = num % 10;
+	if (num == 2 || num == 3 || num == 4)
+		return day[1];
+	if (b == 1 && a != '11')
+		return day[0];
+	if (b > 1 && b < 5 && '121314'.indexOf(a) < 0 && a.length > 1)
+		return day[1];
+	else
+		return day[2]
 }
 
 function selectVacationType() {
@@ -127,7 +141,7 @@ $('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
   }
 
   daysLeft[user] -= days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selDays(days) + 'отпуска.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'отпуска.').removeClass(remClass).addClass("alert-success");
 
 }
 
@@ -149,7 +163,7 @@ function otherVacation() {
     return
   }
   otherDaysLeft[user] -= days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selDays(days) + 'отпуска за свой счёт.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'отпуска за свой счёт.').removeClass(remClass).addClass("alert-success");
 }
 
 function sickLeave() {
@@ -166,7 +180,7 @@ function sickLeave() {
     return
   }
   sickLeaveDays[user] += days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selDays(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
 }
 
 function personalLeave() {
@@ -205,5 +219,5 @@ function businessTrip() {
     return
   }
   businessTripDays[user] += days;
-  console.log('Сотрудник ' + usersNames[user] + text + days + selDays(days) + 'командировки.')
+  console.log('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'командировки.')
 }
