@@ -17,10 +17,7 @@ function checkForm() {
   user = main.user.options.selectedIndex;
   start = new Date($('#start').val());
   finish = new Date($('#finish').val());
- // start1 = new Date(document.getElementById("start").value + ' ' + document.getElementById("start1").value);
- // finish1 = new Date(document.getElementById("finish").value + ' ' + document.getElementById("finish1").value);
   days = (finish - start) / 86400 / 1000 + 1;
-//  hours = (finish1 - start1) / 1000 / 60 / 60;
 }
 
 function setDate() {
@@ -106,6 +103,13 @@ function selectVacationType() {
 	$('#result').html('Введите обе даты!').removeClass(remClass).addClass("alert-danger");
     return
   }
+  
+    if (start > finish) {
+$('#start').val('')
+$('#finish').val('')
+$('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
+   return
+  }
 
 	if (userSex[main.user.options.selectedIndex]) {
 		text = ' оформил '
@@ -128,17 +132,12 @@ function selectVacationType() {
 }
 
 function simpleVacation() {
-/*   var user = main.user.options.selectedIndex;
-  var start = new Date($('#start').val());
-  var finish = new Date($('#finish').val());
-  var days = (finish - start) / 86400 / 1000 + 1; */
-
-  if (start > finish) {
+/*   if (start > finish) {
 $('#start').val('')
 $('#finish').val('')
 $('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
    return
-  }
+  } */
 
   if (days > 15) {
 	$('#result').html('Больше 15 дней подряд брать запрещено!').removeClass(remClass).addClass("alert-danger");
@@ -156,17 +155,13 @@ $('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
 }
 
 function otherVacation() {
-/*   var user = main.user.options.selectedIndex;
-  var start = new Date($('#start').val());
-  var finish = new Date($('#finish').val());
-  var days = (finish - start) / 86400 / 1000 + 1; */
 
-  if (start > finish) {
+/*   if (start > finish) {
 	$('#start').val('')
 	$('#finish').val('')
 	$('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
     return
-  }
+  } */
 
   if (days > otherDaysLeft[user]) {
 	$('#result').html('У вас не осталось так много дней отпуска. Остаток: ' + otherDaysLeft[user] + ' дней').removeClass(remClass).addClass("alert-warning");
@@ -177,34 +172,30 @@ function otherVacation() {
 }
 
 function sickLeave() {
-  var user = main.user.options.selectedIndex;
-  var start = new Date($('#start').val());
-  var finish = new Date($('#finish').val());
-  var days = (finish - start) / 86400 / 1000 + 1;
   
-  if (start > finish) {
+/*   if (start > finish) {
 	$('#start').val('')
 	$('#finish').val('')
 	$('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
-    alert(lessOneDay);
     return
-  }
+  } */
+  
   sickLeaveDays[user] += days;
   $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
 }
 
 function personalLeave() {
-  var user = main.user.options.selectedIndex;
+/*   var user = main.user.options.selectedIndex;
   var start = new Date(document.getElementById("start").value);
-  var finish = new Date(document.getElementById("finish").value);
+  var finish = new Date(document.getElementById("finish").value); */
   var minutes = (finish - start) / 1000 / 60;
   
-  if (start >= finish) {
+/*   if (start >= finish) {
     document.getElementById("start").value = '';
     document.getElementById("finish").value = '';
     alert('Дата окончания не может быть раньше начала!');
     return
-  }
+  } */
   
   if (minutes > personalLeaveMinutes[user]) {
     alert('У вас не осталось так много времени личного отсутствия. Остаток: ' + Math.floor(personalLeaveMinutes[user] / 60) + ' часов ' + personalLeaveMinutes[user] % 60 + ' минут');
@@ -212,7 +203,7 @@ function personalLeave() {
   }
 
   personalLeaveMinutes[user] -= minutes
-  console.log('Сотрудник ' + usersNames[user] + text + Math.floor(minutes / 60) + ' часов ' + minutes % 60 + ' минут личного отсутствия.')
+  $('#result').html('Сотрудник ' + usersNames[user] + text + Math.floor(minutes / 60) + ' часов ' + minutes % 60 + ' минут личного отсутствия.').removeClass(remClass).addClass("alert-success");
 }
 
 function businessTrip() {
