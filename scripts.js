@@ -62,28 +62,6 @@ function reset() {
 	$('#result').html('Результат').removeClass(remClass).addClass("alert-secondary");
 }
 
-/* function selDays (num) {
-	var day = [' день ',' дня ',' дней '];
-	if (num >= 5 && num <= 20)
-		return day[2];
-	else if (num == 1)
-		return day[0];
-	else if (num > 1 && num <5 ) 
-		return day[1];
-	
-	var a = num.toString();
-	if (a.length >= 2 && parseInt(a.slice(-2)) < 20 && parseInt(a.slice(-2)) >= 5) 
-		return day[2]
-	
-	else if  (a.length >= 2 && parseInt(a.slice(-1)) > 1 && parseInt(a.slice(-1)) < 5) 
-		return day[1]
-	
-	else if (a.length >= 2 && parseInt(a.slice(-1)) == 1 && parseInt(a.slice(-2)) != 11)
-		return day[0]
-	
-	else return day[2]
-} */
-
 function _selectDays_ (num) {
 	var day = [' день ',' дня ',' дней '];
 	var a = num.toString().slice(-2);
@@ -132,12 +110,6 @@ $('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
 }
 
 function simpleVacation() {
-/*   if (start > finish) {
-$('#start').val('')
-$('#finish').val('')
-$('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
-   return
-  } */
 
   if (days > 15) {
 	$('#result').html('Больше 15 дней подряд брать запрещено!').removeClass(remClass).addClass("alert-danger");
@@ -156,13 +128,6 @@ $('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
 
 function otherVacation() {
 
-/*   if (start > finish) {
-	$('#start').val('')
-	$('#finish').val('')
-	$('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
-    return
-  } */
-
   if (days > otherDaysLeft[user]) {
 	$('#result').html('У вас не осталось так много дней отпуска. Остаток: ' + otherDaysLeft[user] + ' дней').removeClass(remClass).addClass("alert-warning");
     return
@@ -173,29 +138,12 @@ function otherVacation() {
 
 function sickLeave() {
   
-/*   if (start > finish) {
-	$('#start').val('')
-	$('#finish').val('')
-	$('#result').html(lessOneDay).removeClass(remClass).addClass("alert-danger");
-    return
-  } */
-  
   sickLeaveDays[user] += days;
   $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
 }
 
 function personalLeave() {
-/*   var user = main.user.options.selectedIndex;
-  var start = new Date(document.getElementById("start").value);
-  var finish = new Date(document.getElementById("finish").value); */
   var minutes = (finish - start) / 1000 / 60;
-  
-/*   if (start >= finish) {
-    document.getElementById("start").value = '';
-    document.getElementById("finish").value = '';
-    alert('Дата окончания не может быть раньше начала!');
-    return
-  } */
   
   if (minutes > personalLeaveMinutes[user]) {
     alert('У вас не осталось так много времени личного отсутствия. Остаток: ' + Math.floor(personalLeaveMinutes[user] / 60) + ' часов ' + personalLeaveMinutes[user] % 60 + ' минут');
@@ -208,17 +156,6 @@ function personalLeave() {
 
 function businessTrip() {
 
-  var user = main.user.options.selectedIndex;
-  var start = new Date($('#start').val());
-  var finish = new Date($('#finish').val());
-  var days = (finish - start) / 86400 / 1000 + 1;
-
-  if (start >= finish) {
-    document.getElementById("start").value = '';
-    document.getElementById("finish").value = '';
-    alert('Дата окончания не может быть раньше начала. Если вы хотите взять отпуск меньше целого дня, воспользуйтесь типом \"Личное\"');
-    return
-  }
   businessTripDays[user] += days;
   $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'командировки.').removeClass(remClass).addClass("alert-success");
 }
