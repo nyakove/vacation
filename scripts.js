@@ -48,7 +48,6 @@ function selectHours() {
   else {
     a.type = 'date';
     b.type = 'date';
-
   }
 }
 
