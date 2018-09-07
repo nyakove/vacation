@@ -48,13 +48,26 @@ function _selectDays_ (num) {
 		return day[2]
 }
 
+function selectDaysMath (num) {
+	var day = [' день ',' дня ',' дней '];
+	var a = num % 10;
+	var b = num % 100;
+	if (a == 1 && b != 11)
+		return day[0]
+	if (a > 1 && a < 5 && b != 12 && b != 13 && b != 14) 
+		return day[1];
+	else 
+		return day[2];
+	
+}
+///////////////////////////////////// TESTS////////////////////////////////////////////
 var t1 = performance.now();
 for (i=0; i<1000000; i++) {
 	selectDays(i);
 }
 var t2 = performance.now();
 
-console.log('selectDays(): ' + (t2-t1) + ' ms');
+console.log('selectDays(): ' + (t2-t1).toFixed() + ' ms');
 
 var t3 = performance.now();
 for (j=0; j<1000000; j++) {
@@ -62,7 +75,7 @@ for (j=0; j<1000000; j++) {
 }
 var t4 = performance.now();
 
-console.log('_selectDays_(): ' + (t4-t3) + ' ms')
+console.log('_selectDays_(): ' + (t4-t3).toFixed() + ' ms')
 
 var t5 = performance.now();
 for (k=0; k<1000000; k++) {
@@ -70,6 +83,14 @@ for (k=0; k<1000000; k++) {
 }
 var t6 = performance.now();
 
-console.log('selDays(): ' + (t6-t5) + ' ms');
+console.log('selDays(): ' + (t6-t5).toFixed() + ' ms');
+
+var t7 = performance.now();
+for (l=0; l<1000000; l++) {
+	selectDaysMath(l);
+}
+var t8 = performance.now();
+
+console.log('selectDaysMath(): ' + (t8-t7).toFixed() + ' ms');
 
 
