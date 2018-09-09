@@ -61,7 +61,7 @@ function reset() {
 	$('#result').html('Результат').removeClass(remClass).addClass("alert-secondary");
 }
 
-function _selectDays_ (num) {
+/* function _selectDays_ (num) {
 	var day = [' день ',' дня ',' дней '];
 	var a = num.toString().slice(-2);
 	var b = num % 10;
@@ -73,6 +73,19 @@ function _selectDays_ (num) {
 		return day[1];
 	else
 		return day[2]
+} */
+
+function selectDaysMath (num) {
+	var day = [' день ',' дня ',' дней '];
+	var a = num % 10;
+	var b = num % 100;
+	if (a == 1 && b != 11)
+		return day[0]
+	if (a > 1 && a < 5 && b != 12 && b != 13 && b != 14) 
+		return day[1];
+	else 
+		return day[2];
+	
 }
 
 function selectVacationType() {
@@ -121,7 +134,7 @@ function simpleVacation() {
   }
 
   daysLeft[user] -= days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'отпуска.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selectDaysMath(days) + 'отпуска.').removeClass(remClass).addClass("alert-success");
 
 }
 
@@ -132,13 +145,13 @@ function otherVacation() {
     return
   }
   otherDaysLeft[user] -= days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'отпуска за свой счёт.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selectDaysMath(days) + 'отпуска за свой счёт.').removeClass(remClass).addClass("alert-success");
 }
 
 function sickLeave() {
   
   sickLeaveDays[user] += days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selectDaysMath(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
 }
 
 function personalLeave() {
@@ -156,5 +169,5 @@ function personalLeave() {
 function businessTrip() {
 
   businessTripDays[user] += days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + _selectDays_(days) + 'командировки.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selectDaysMath(days) + 'командировки.').removeClass(remClass).addClass("alert-success");
 }
