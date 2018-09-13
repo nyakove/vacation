@@ -31,7 +31,7 @@ businessTripDays: 0
 })
 }
 
-var daysLeft = { 0: 21, 1: 21, 2: 21, 3: 21, 4: 21 };
+//var daysLeft = { 0: 21, 1: 21, 2: 21, 3: 21, 4: 21 };
 var otherDaysLeft = { 0: 15, 1: 15, 2: 15, 3: 15, 4: 15 };
 var sickLeaveDays = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
 var personalLeaveMinutes = { 0: 1020, 1: 1020, 2: 1020, 3: 1020, 4: 1020 };
@@ -153,7 +153,7 @@ function simpleVacation() {
   }
   
   if (days > users[user].daysLeft) {
-	$('#result').html('У вас не осталось так много дней отпуска. Остаток: ' + users[user].daysLeft + selectDaysMath (otherDaysLeft[user])).removeClass(remClass).addClass("alert-warning");
+	$('#result').html('У вас не осталось так много дней отпуска. Остаток: ' + users[user].daysLeft + selectDaysMath (users[user].daysLeft)).removeClass(remClass).addClass("alert-warning");
     return
   }
 
