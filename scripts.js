@@ -37,7 +37,7 @@ var sickLeaveDays = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
 var personalLeaveMinutes = { 0: 1020, 1: 1020, 2: 1020, 3: 1020, 4: 1020 };
 var businessTripDays = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
 var lessOneDay = 'Дата окончания не может быть раньше начала.'
-var userSex = { 0: 1, 1: 0, 2: 1, 3: 0, 4: 1 };
+//var userSex = { 0: 1, 1: 0, 2: 1, 3: 0, 4: 1 };
 var text = '';
 
 ////////////////////////FUNCTIONS STARTS HERE
@@ -96,6 +96,7 @@ function reset() {
 	main.user.options.selectedIndex = 0;
 	main.type.options.selectedIndex = 0;
 	$('#result').html('Результат').removeClass(remClass).addClass("alert-secondary");
+	globalVar();
 }
 
 function selectDaysMath (num) {
