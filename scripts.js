@@ -169,13 +169,13 @@ function otherVacation() {
     return
   }
   otherDaysLeft[user] -= days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selectDaysMath(days) + 'отпуска за свой счёт.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + getSex() + days + selectDaysMath(days) + 'отпуска за свой счёт.').removeClass(remClass).addClass("alert-success");
 }
 
 function sickLeave() {
   
   sickLeaveDays[user] += days;
-  $('#result').html('Сотрудник ' + usersNames[user] + text + days + selectDaysMath(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
+  $('#result').html('Сотрудник ' + usersNames[user] + getSex() + days + selectDaysMath(days) + 'больничного.').removeClass(remClass).addClass("alert-success");
 }
 
 function personalLeave() {
