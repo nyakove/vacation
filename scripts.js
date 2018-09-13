@@ -61,20 +61,6 @@ function reset() {
 	$('#result').html('Результат').removeClass(remClass).addClass("alert-secondary");
 }
 
-/* function _selectDays_ (num) {
-	var day = [' день ',' дня ',' дней '];
-	var a = num.toString().slice(-2);
-	var b = num % 10;
-	if (num == 2 || num == 3 || num == 4)
-		return day[1];
-	if (b == 1 && a != '11')
-		return day[0];
-	if (b > 1 && b < 5 && '121314'.indexOf(a) < 0 && a.length > 1)
-		return day[1];
-	else
-		return day[2]
-} */
-
 function selectDaysMath (num) {
 	var day = [' день ',' дня ',' дней '];
 	var a = num % 10;
