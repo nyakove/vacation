@@ -138,10 +138,9 @@ button:focus {
         right: auto;
         top: 0;
         transform: none;
-        width: 100%;
-        height: 100%;
-        font-size: 40pt;
-        justify-content: flex-start;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
         align-items: center;
         margin: 0;
         padding: 0;
@@ -154,13 +153,11 @@ button:focus {
 
     #main-wrap {
         width: 100vw;
-        height: 55vh;
-        margin-bottom: 5vh;
     }
 
     #container-forms {
         width: 100vw;
-        height: 40vh;
+        height: 60vh;
     }
 
     #dates,
@@ -176,16 +173,16 @@ button:focus {
     }
 
     h1 {
-        font-size: 64pt;
+        font-size: 15vw;
         font-weight: 600;
         padding: 0 20px;
     }
 
     #buttons {
         width: 100vw;
+        height: 25vh;
         justify-content: center;
         align-items: center;
-        margin-top: 5vh;
     }
 
     .button {
@@ -198,20 +195,20 @@ button:focus {
     button {
         width: 80%;
         height: 7vh;
-        font-size: 40pt;
+        font-size: 6vw;
     }
 
     #forms span {
-        font-size: 30pt;
+        font-size: 5vw;
         padding: 10px 15px;
         font-family: 'Segoe UI';
     }
 
     input {
-        width: 92vw;
-        height: 80px;
+        width: 90vw;
+        height: 5vh;
         border: 3px solid #3f6af7;
-        font-size: 30pt;
+        font-size: 5vw;
         margin: 0 2vw;
         font-family: 'Segoe UI';
         padding: 0 2vw;
@@ -219,12 +216,17 @@ button:focus {
 
     select {
         width: 96vw;
-        padding: 1px;
-        height: 80px;
+        height: 6vh;
         border: 3px solid #ffa223;
-        font-size: 30pt;
+        font-size: 5vw;
         margin: 0 2vw;
         font-family: 'Segoe UI';
-                padding: 0 2vw;
+        padding: 0 2vw;
+    }
+
+    #title {
+        height: 15vh;
+        display: flex;
+        align-items: center;
     }
 }
