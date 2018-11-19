@@ -229,4 +229,8 @@ button:focus {
         display: flex;
         align-items: center;
     }
+    
+    option {
+        font-size: 30%;
+    }
 }
