@@ -2,16 +2,45 @@ body {
     display: flex;
     position: fixed;
     flex-direction: column;
-    min-width: 400px;
-    max-width: 1024px;
     top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
+    font-family: 'Segoe UI';
+    font-size: 10pt;
+    font-weight: 400;
+}
+
+@media all and (orientation: portrait) {
+    body {
+        left: auto;
+        right: auto;
+        top: 50px;
+        transform: none;
+        width: 90%;
+        font-size: 24pt;
+    }
+
+    #container {
+        width: 100%;
+    }
+
+    #main-wrap {
+        width: 100%;
+    }
+
+    #dates,
+    #persons {
+        width: 100%!important;
+    }
+    
+    #forms {
+        flex-direction: column;
+    }
 }
 
 h1 {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI';
     font-size: 32pt;
     font-weight: 600;
 }
@@ -62,19 +91,24 @@ input {
     padding: 0;
     border-radius: 5px;
     outline: none;
+    border: 1px solid #e5e5e5;
+    font-family: 'Segoe UI';
 }
 
 select {
     width: calc(80% + 4px);
-    height: 29px;
+    height: 27px;
     padding: 1px;
     border-radius: 5px;
+    outline: none;
+    border: 1px solid #e5e5e5;
 }
 
 #forms span {
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 10pt;
-    padding: 3px;
+    font-family: 'Segoe UI';
+    font-size: 11pt;
+    font-weight: 600;
+    padding: 5px;
 }
 
 #buttons {
@@ -107,13 +141,17 @@ button {
     width: 164px;
     height: 30px;
     border-radius: 5px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI';
     font-size: 12pt;
     font-weight: 600;
 }
 
 #reset {
     background-color: #f53a3a;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 button,
