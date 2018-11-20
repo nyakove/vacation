@@ -129,6 +129,7 @@ button {
 
 button:hover {
     cursor: pointer;
+    background-color: #4eba34;
 }
 
 button,
@@ -210,21 +211,18 @@ button:focus {
     }
 
     input {
-        width: 92vw;
-        height: 5vh;
+        width: calc(100% - 11px);
+        height: calc(6vh - 6px);
         border: 3px solid #3f6af7;
         font-size: 5vw;
-        margin: 0 2vw;
         font-family: 'Segoe UI';
-        padding: 0 2vw;
     }
 
     select {
-        width: 96vw;
-        height: 5vh;
+        width: 100%;
+        height: 6vh;
         border: 3px solid #ffa223;
         font-size: 5vw;
-        margin: 0 2vw;
         font-family: 'Segoe UI';
         padding: 0 2vw;
     }
@@ -236,6 +234,7 @@ button:focus {
     }
 
     option {
-        font-size: 30%;
+        font-size: 2vmax;
+        width: 100vh;
     }
 }
