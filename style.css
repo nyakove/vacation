@@ -205,7 +205,7 @@ button:focus {
     }
 
     input {
-        width: 90vw;
+        width: 92vw;
         height: 5vh;
         border: 3px solid #3f6af7;
         font-size: 5vw;
@@ -216,7 +216,7 @@ button:focus {
 
     select {
         width: 96vw;
-        height: 6vh;
+        height: 5vh;
         border: 3px solid #ffa223;
         font-size: 5vw;
         margin: 0 2vw;
