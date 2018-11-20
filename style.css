@@ -8,6 +8,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     height: 100%;
+   background-color: #f1f1f1;
 }
 
 
@@ -111,6 +112,7 @@ select {
 
 button {
     background-color: #4eba34;
+    background: linear-gradient(to top, #4eba34, #3b9525);
     color: #eafced;
     border: none;
     border-bottom: 2px solid #357725;
@@ -122,8 +124,14 @@ button {
     font-weight: 600;
 }
 
+button:hover {
+    background-color: #33cc0e;
+
+}
+
 #reset {
     background-color: #f53a3a;
+    background: linear-gradient(to top, #f53a3a, #c90c0c);
     border-bottom: 2px solid #8e0a0a;
 }
 
@@ -202,6 +210,13 @@ button:focus {
         width: 80%;
         height: 7vh;
         font-size: 6vw;
+        border-bottom: 1vw solid #357725;
+        border-radius: 1vh;
+    }
+
+    #reset {
+
+        border-bottom: 1vw solid #8e0a0a;
     }
 
     #forms span {
