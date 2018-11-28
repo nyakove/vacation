@@ -50,12 +50,12 @@ function addMain() {
 }
 
 
-function global() {
+/*function global() {
     user = main.user.options.selectedIndex;
     start = new Date(document.getElementById('start').value);
     finish = new Date(document.getElementById('finish').value);
     days = (finish - start) / 86400000 + 1;
-}
+}*/
 
 function daysForm(num) {
     const a = num % 10;
@@ -76,6 +76,36 @@ function setForm(id) {
         return ' оформила ';
     else
         return ' оформил(а) ';
+}
+
+function selectVacationType() {
+    if (document.getElementById('start').value == '' || document.getElementById('finish').value == '') {
+        console.error('Введите обе даты!');
+        return;
+    }
+
+    if (document.getElementById('finish').value < document.getElementById('start').value) {
+        console.error('Конец не может быть раньше начала!');
+        return;
+    }
+
+    switch (main.type.options.selectedIndex) {
+        case 0:
+            vacation();
+            break;
+        case 1:
+            otherVacation();
+            break;
+        case 2:
+            sickLeave();
+            break;
+        case 3:
+            personalLeave();
+            break;
+        case 4:
+            businessTrip();
+            break;
+    }
 }
 
 function vacation() {
@@ -110,4 +140,33 @@ function vacation() {
     localStorage.setItem('vacationList', JSON.stringify(vacations));
 
     console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'отпуска.')
+}
+
+function otherVacation() {
+    let targetedUser = persons[main.user.options.selectedIndex];
+    let begin = new Date(document.getElementById('start').value);
+    let end = new Date(document.getElementById('finish').value);
+    let daysCount = (end - begin) / 86400000 + 1;
+
+    if (daysCount > targetedUser.otherDaysLeft) {
+        console.log('У вас не осталось так много дней отпуска за свой счет. Остаток: ' + targetedUser.otherDaysLeft + daysForm(daysCount));
+        return;
+    }
+
+    targetedUser.otherDaysLeft -= daysCount;
+    persons[main.user.options.selectedIndex].otherDaysLeft = targetedUser.otherDaysLeft;
+    localStorage.setItem('personsList', JSON.stringify(persons));
+
+    vacations.push({
+        number: vacations.length + 1,
+        person: targetedUser,
+        duration: daysCount,
+        type: 'other vacation',
+        begin: begin,
+        end: end,
+    })
+
+    localStorage.setItem('vacationList', JSON.stringify(vacations));
+
+    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'отпуска за свой счет.')
 }
