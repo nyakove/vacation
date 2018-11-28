@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<body onload="addMain()">
+    <div id="container">
+        <div id="main-wrap">
+            <div id='title'>
+                <h1>Отпуск 3.1</h1>
+            </div>
+            <form name="main">
+                <div id="container-forms">
+                    <div id='forms'>
+                        <div id="dates">
+                            <div>
+                                <span>Введите дату начала</span>
+                                <input type="date" id="start" onchange="" />
+                            </div>
+                            <div>
+                                <span>Введите дату окончания</span>
+                                <input type="date" id="finish" onchange="" />
+                            </div>
+                        </div>
+                        <div id="persons">
+                            <div>
+                                <span>Выберите сотрудника</span>
+                                <select name="user" onchange="">
+                                    <option value="1">Иван Семенов</option>
+                                    <option value="2">Ирина Таращук</option>
+                                    <option value="3">Григорий Двинский</option>
+                                    <option value="4">Мария Кольченко</option>
+                                    <option value="5">Геннадий Тарасов</option>
+                                </select>
+                            </div>
+                            <div>
+                                <span>Выберите тип отпуска</span>
+                                <select name="type">
+                                    <option value="1">Обычный</option>
+                                    <option value="2">За свой счёт</option>
+                                    <option value="3">Больничный</option>
+                                    <option value="4">Личное</option>
+                                    <option value="5">Командировка</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id='buttons'>
+            <div class='button'>
+                <button onclick="" id='check'>Проверить</button>
+            </div>
+            <div class='button'>
+                <button onclick="" id='reset'>Сбросить</button>
+            </div>
+            <div id="result"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
