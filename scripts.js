@@ -161,7 +161,7 @@ function selectDaysMath(num) {
     var a = num % 10;
     var b = num % 100;
     if (a == 1 && b != 11)
-        return day[0]
+        return day[0];
     if (a > 1 && a < 5 && b != 12 && b != 13 && b != 14)
         return day[1];
     else

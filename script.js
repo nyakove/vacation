@@ -71,21 +71,21 @@ function daysForm(num) {
     const a = num % 10;
     const b = num % 100;
     if (a == 1 && b != 11)
-        return ' день ';
+        return 'день';
     if (a > 1 && a < 5 && b != 12 && b != 13 && b != 14)
-        return ' дня ';
+        return 'дня';
     else
-        return ' дней ';
+        return 'дней';
 
 }
 
 function setForm(id) {
     if (persons[id].sex == 'male')
-        return ' оформил ';
+        return 'оформил';
     else if (persons[id].sex == 'female')
-        return ' оформила ';
+        return 'оформила';
     else
-        return ' оформил(а) ';
+        return 'оформил(а)';
 }
 
 function selectVacationType() {
@@ -128,7 +128,7 @@ function vacation() {
     }
 
     if (daysCount > targetedUser.daysLeft) {
-        console.log('У вас не осталось так много дней отпуска. Остаток: ' + targetedUser.daysLeft + daysForm(daysCount));
+        console.log(`У вас не осталось так много дней отпуска. Остаток: ${targetedUser.daysLeft} ${daysForm(daysCount)}`);
         return;
     }
 
@@ -147,7 +147,7 @@ function vacation() {
 
     localStorage.setItem('vacationList', JSON.stringify(vacations));
 
-    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'отпуска.')
+    console.log(`${targetedUser.name} ${setForm(targetedUser.id)} ${daysCount} ${daysForm(daysCount)} отпуска.`)
 }
 
 function otherVacation() {
@@ -155,7 +155,7 @@ function otherVacation() {
     dateSet();
 
     if (daysCount > targetedUser.otherDaysLeft) {
-        console.log('У вас не осталось так много дней отпуска за свой счет. Остаток: ' + targetedUser.otherDaysLeft + daysForm(daysCount));
+        console.log(`У вас не осталось так много дней отпуска за свой счет. Остаток:  ${targetedUser.otherDaysLeft} ${daysForm(daysCount)}`);
         return;
     }
 
@@ -174,7 +174,7 @@ function otherVacation() {
 
     localStorage.setItem('vacationList', JSON.stringify(vacations));
 
-    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'отпуска за свой счет.')
+    console.log(`${targetedUser.name} ${setForm(targetedUser.id)} ${daysCount} ${daysForm(daysCount)} отпуска за свой счет.`);
 }
 
 function sickLeave() {
@@ -195,7 +195,7 @@ function sickLeave() {
 
     localStorage.setItem('vacationList', JSON.stringify(vacations));
 
-    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'больничного.')
+    console.log(`${targetedUser.name} ${setForm(targetedUser.id)} ${daysCount} ${daysForm(daysCount)} больничного.`);
 
 }
 
@@ -205,7 +205,7 @@ function personalLeave() {
     let minutes = (end - begin) / 1000 / 60;
 
     if (minutes > targetedUser.personalLeaveMinutes) {
-        console.error('У вас не осталось так много времени личного отсутствия. Остаток: ' + Math.floor(targetedUser.personalLeaveMinutes / 60) + ' часов ' + targetedUser.personalLeaveMinutes % 60 + ' минут');
+        console.error(`У вас не осталось так много времени личного отсутствия. Остаток: ${Math.floor(targetedUser.personalLeaveMinutes / 60)} часов ${targetedUser.personalLeaveMinutes % 60} минут`);
         return;
     }
 
@@ -224,7 +224,7 @@ function personalLeave() {
 
     localStorage.setItem('vacationList', JSON.stringify(vacations));
 
-    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + Math.floor(minutes / 60) + ' часов ' + minutes % 60 + ' минут личного отсутствия.');
+    console.log(`${targetedUser.name} ${setForm(targetedUser.id)} ${Math.floor(minutes / 60)} часов ${minutes % 60} минут личного отсутствия.`);
 }
 
 function businessTrip() {
@@ -245,6 +245,17 @@ function businessTrip() {
 
     localStorage.setItem('vacationList', JSON.stringify(vacations));
 
-    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'командировки.')
+    console.log(`${targetedUser.name} ${setForm(targetedUser.id)} ${daysCount} ${daysForm(daysCount)} командировки.`);
 
+}
+
+function remain() {
+    dateSet();
+
+    console.info(`Сотрудник: ${targetedUser.name}`);
+    console.info(`Остаток отпуска: ${targetedUser.daysLeft} ${daysForm(targetedUser.daysLeft)}`);
+    console.info(`Остаток отпуска за свой счет: ${targetedUser.otherDaysLeft} ${daysForm(targetedUser.otherDaysLeft)}`);
+    console.info(`Оформлено больничных: ${targetedUser.sickLeaveDays} ${daysForm(targetedUser.sickLeaveDays)}`);
+    console.info(`Остаток отсутствия по собственному желанию: ${Math.floor(targetedUser.personalLeaveMinutes / 60)} часов ${targetedUser.personalLeaveMinutes % 60} минут`);
+    console.info(`Оформлено командировок: ${targetedUser.businessTripDays} ${daysForm(targetedUser.businessTripDays)}`);
 }
