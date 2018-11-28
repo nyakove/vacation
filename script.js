@@ -19,6 +19,16 @@ function dateSet() {
     daysCount = (end - begin) / 86400000 + 1;
 }
 
+function selectHours() {
+    if (main.type.options.selectedIndex == 3) {
+        document.getElementById('start').type = 'datetime-local';
+        document.getElementById('finish').type = 'datetime-local';
+    } else {
+        document.getElementById('start').type = 'date';
+        document.getElementById('finish').type = 'date';
+    }
+}
+
 function setSex(id) {
 
     if (main.user.options[id] === undefined) {
@@ -173,7 +183,7 @@ function sickLeave() {
     targetedUser.sickLeaveDays += daysCount;
     persons[main.user.options.selectedIndex].sickLeaveDays = targetedUser.sickLeaveDays;
     localStorage.setItem('personsList', JSON.stringify(persons));
-    
+
     vacations.push({
         number: vacations.length + 1,
         person: targetedUser,
@@ -182,9 +192,59 @@ function sickLeave() {
         begin: begin,
         end: end,
     })
-    
+
     localStorage.setItem('vacationList', JSON.stringify(vacations));
 
     console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'больничного.')
+
+}
+
+function personalLeave() {
+    dateSet();
+
+    let minutes = (end - begin) / 1000 / 60;
+
+    if (minutes > targetedUser.personalLeaveMinutes) {
+        console.error('У вас не осталось так много времени личного отсутствия. Остаток: ' + Math.floor(targetedUser.personalLeaveMinutes / 60) + ' часов ' + targetedUser.personalLeaveMinutes % 60 + ' минут');
+        return;
+    }
+
+    targetedUser.personalLeaveMinutes -= minutes;
+    persons[main.user.options.selectedIndex].personalLeaveMinutes = targetedUser.personalLeaveMinutes;
+    localStorage.setItem('personsList', JSON.stringify(persons));
+
+    vacations.push({
+        number: vacations.length + 1,
+        person: targetedUser,
+        duration: minutes,
+        type: 'personal leave',
+        begin: begin,
+        end: end,
+    })
+
+    localStorage.setItem('vacationList', JSON.stringify(vacations));
+
+    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + Math.floor(minutes / 60) + ' часов ' + minutes % 60 + ' минут личного отсутствия.');
+}
+
+function businessTrip() {
+    dateSet();
+
+    targetedUser.businessTripDays += daysCount;
+    persons[main.user.options.selectedIndex].businessTripDays = targetedUser.businessTripDays;
+    localStorage.setItem('personsList', JSON.stringify(persons));
+
+    vacations.push({
+        number: vacations.length + 1,
+        person: targetedUser,
+        duration: daysCount,
+        type: 'business trip',
+        begin: begin,
+        end: end,
+    })
+
+    localStorage.setItem('vacationList', JSON.stringify(vacations));
+
+    console.log('Сотрудник ' + targetedUser.name + setForm(targetedUser.id) + daysCount + daysForm(daysCount) + 'командировки.')
 
 }
