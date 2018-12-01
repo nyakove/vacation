@@ -259,3 +259,30 @@ function remain() {
     console.info(`Остаток отсутствия по собственному желанию: ${Math.floor(targetedUser.personalLeaveMinutes / 60)} часов ${targetedUser.personalLeaveMinutes % 60} минут`);
     console.info(`Оформлено командировок: ${targetedUser.businessTripDays} ${daysForm(targetedUser.businessTripDays)}`);
 }
+
+
+function vac_parse(obj) {
+    if (obj.person.name == this && obj.type != 'personal leave') {
+        console.log(`
+Employee: ${obj.person.name} 
+type of absence: ${obj.type} 
+begin: ${new Date(obj.begin).toLocaleDateString()}
+end: ${new Date(obj.end).toLocaleDateString()}
+duration: ${obj.duration} ${obj.duration > 1 ? 'days' : 'day'}
+`)
+    }
+    
+    else if (obj.person.name == this && obj.type == 'personal leave') {
+        console.log(`
+Employee: ${obj.person.name} 
+type of absence: ${obj.type} 
+begin: ${new Date(obj.begin).toLocaleDateString()} ${new Date(obj.begin).toLocaleTimeString()}
+end: ${new Date(obj.end).toLocaleDateString()} ${new Date(obj.end).toLocaleTimeString()}
+duration: ${Math.floor(obj.duration / 60)} ${obj.duration > 1 ? 'hours' : 'hour'} ${obj.duration % 60} minutes
+`)
+    }
+}
+
+function check_vac() {
+    vacations.forEach(vac_parse, main.user.options[main.user.options.selectedIndex].text)
+}
