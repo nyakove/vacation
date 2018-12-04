@@ -262,27 +262,55 @@ function remain() {
 
 
 function vac_parse(obj) {
-    if (obj.person.name == this && obj.type != 'personal leave') {
+    dateSet();
+    if (obj.person.name == targetedUser.name && obj.type != 'personal leave') {
         console.log(`
 Employee: ${obj.person.name} 
 type of absence: ${obj.type} 
 begin: ${new Date(obj.begin).toLocaleDateString()}
 end: ${new Date(obj.end).toLocaleDateString()}
 duration: ${obj.duration} ${obj.duration > 1 ? 'days' : 'day'}
-`)
-    }
-    
-    else if (obj.person.name == this && obj.type == 'personal leave') {
+`);
+        document.getElementById('splashscreen').innerHTML += `
+<div>
+type of absence: ${obj.type} <br/>
+begin: ${new Date(obj.begin).toLocaleDateString()}<br />
+end: ${new Date(obj.end).toLocaleDateString()}<br />
+duration: ${obj.duration} ${obj.duration > 1 ? 'days' : 'day'}<br />
+</div>
+`;
+    } else if (obj.person.name == targetedUser.name && obj.type == 'personal leave') {
         console.log(`
 Employee: ${obj.person.name} 
 type of absence: ${obj.type} 
 begin: ${new Date(obj.begin).toLocaleDateString()} ${new Date(obj.begin).toLocaleTimeString()}
 end: ${new Date(obj.end).toLocaleDateString()} ${new Date(obj.end).toLocaleTimeString()}
 duration: ${Math.floor(obj.duration / 60)} ${obj.duration > 1 ? 'hours' : 'hour'} ${obj.duration % 60} minutes
-`)
+`);
+        document.getElementById('splashscreen').innerHTML += `
+<div>
+type of absence: ${obj.type}<br/>
+begin: ${new Date(obj.begin).toLocaleDateString()} ${new Date(obj.begin).toLocaleTimeString()}<br />
+end: ${new Date(obj.end).toLocaleDateString()} ${new Date(obj.end).toLocaleTimeString()}<br />
+duration: ${Math.floor(obj.duration / 60)} ${obj.duration > 1 ? 'hours' : 'hour'} ${obj.duration % 60} minutes<br/>
+</div>
+`;
     }
 }
 
+function splashOn() {
+    document.getElementById('splashscreen').style.height = '500px';
+    check_vac();
+}
+
 function check_vac() {
-    vacations.forEach(vac_parse, main.user.options[main.user.options.selectedIndex].text)
+    for (let i = 0; i < vacations.length; i++) {
+        setTimeout(() => vac_parse(vacations[i]), i * 750);
+
+    }
+}
+
+function splashClose() {
+    document.getElementById('splashscreen').innerHTML = '';
+    document.getElementById('splashscreen').style.height = '0px';
 }

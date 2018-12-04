@@ -12,6 +12,7 @@
 <body onload="addMain()">
     <div id="container">
         <div id="main-wrap">
+            <div id="splashscreen" onclick="splashClose()"></div>
             <div id='title'>
                 <h1>Отпуск 3.1</h1>
             </div>
@@ -56,10 +57,16 @@
         </div>
         <div id='buttons'>
             <div class='button'>
-                <button onclick="selectVacationType()" id='check'>Оформить</button>
+                <button onclick="selectVacationType()" id='save'>Оформить</button>
             </div>
             <div class='button'>
                 <button onclick="main.reset()" id='reset'>Сбросить</button>
+            </div>
+            <div class='button'>
+                <button onclick="splashOn()" id='check'>Список</button>
+            </div>
+            <div class='button'>
+                <button onclick="" id='check_v2'>Остаток</button>
             </div>
         </div>
         <div id="result">
