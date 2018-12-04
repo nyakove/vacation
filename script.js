@@ -250,14 +250,29 @@ function businessTrip() {
 }
 
 function remain() {
+    splashClose();
+    document.getElementById('splashscreen').style.height = '500px';
+
     dateSet();
 
     console.info(`Сотрудник: ${targetedUser.name}`);
     console.info(`Остаток отпуска: ${targetedUser.daysLeft} ${daysForm(targetedUser.daysLeft)}`);
     console.info(`Остаток отпуска за свой счет: ${targetedUser.otherDaysLeft} ${daysForm(targetedUser.otherDaysLeft)}`);
     console.info(`Оформлено больничных: ${targetedUser.sickLeaveDays} ${daysForm(targetedUser.sickLeaveDays)}`);
-    console.info(`Остаток отсутствия по собственному желанию: ${Math.floor(targetedUser.personalLeaveMinutes / 60)} часов ${targetedUser.personalLeaveMinutes % 60} минут`);
+    console.info(`Остаток личного отсутствия: ${Math.floor(targetedUser.personalLeaveMinutes / 60)} часов ${targetedUser.personalLeaveMinutes % 60} минут`);
     console.info(`Оформлено командировок: ${targetedUser.businessTripDays} ${daysForm(targetedUser.businessTripDays)}`);
+
+
+    document.getElementById('splashscreen').innerHTML += `
+<div>
+Сотрудник: ${targetedUser.name}<br />
+Остаток отпуска: ${targetedUser.daysLeft} ${daysForm(targetedUser.daysLeft)}<br />
+Остаток отпуска за свой счет: ${targetedUser.otherDaysLeft} ${daysForm(targetedUser.otherDaysLeft)}<br />
+Оформлено больничных: ${targetedUser.sickLeaveDays} ${daysForm(targetedUser.sickLeaveDays)}<br />
+Остаток личного отсутствия: ${Math.floor(targetedUser.personalLeaveMinutes / 60)} часов ${targetedUser.personalLeaveMinutes % 60} минут<br />
+Оформлено командировок: ${targetedUser.businessTripDays} ${daysForm(targetedUser.businessTripDays)}<br />
+</div>
+`
 }
 
 
@@ -304,10 +319,11 @@ function splashOn() {
 }
 
 function check_vac() {
+document.getElementById('splashscreen').innerHTML = '';
     for (let i = 0; i < vacations.length; i++) {
-        setTimeout(() => vac_parse(vacations[i]), i * 750);
-
+        setTimeout(() => vac_parse(vacations[i]), i * 500);
     }
+
 }
 
 function splashClose() {
